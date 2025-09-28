@@ -29,37 +29,37 @@ const Shorten = () => {
         fetch("/api/generate", requestOptions)
             .then((response) => response.json())
 
-            .then((result) => {
-                setgenerate(`${process.env.NEXT_PUBLIC_HOST}/${shorturl}`)
-                seturl("")
-                setshorturl("")
-                console.log(result)
-                alert(result.message)
-
-            }
-            )
-            .catch((error) => console.error(error));
+    .then((result) => {
+        setgenerate(`${process.env.NEXT_PUBLIC_HOST}/${shorturl}`)
+        seturl("")
+        setshorturl("")
+        console.log(result)
+        alert(result.message)
 
     }
-    return (
-        <div className='mx-auto flex flex-col item-center bg-purple-100 my-10 w-[30vw]'>
-            <h1 className='text-center font-bold text-xl py-1 text-[#844bb7]'>Generate Your short URLs</h1>
-            <div className='p-2 flex flex-col gap-2 items-center justify-center'>
-                <input className='focus:outline-purple-400 px-5 bg-purple-50 ' type="text" value={url} placeholder='Enter Your URL' onChange={(e) => seturl(e.target.value)} />
-                <input className='focus:outline-purple-400 px-5 bg-purple-50' type="text" value={shorturl} placeholder='Enter Your preferred URL' onChange={(e) => setshorturl(e.target.value)} />
-                <button className='bg-[#c27aff] text-white font-bold rounded-lg py-1 px-2' onClick={generate1}>Generate</button>
-            </div>
-            <div>
-                {generate && <>
-                    <span className='font-bold text-lg'> Your Link </span>
-                    <div><code> <Link target='_blank' href={generate}>{generate}</Link>
-                    </code></div>
-                </>
-                }
-            </div>
+    )
+    .catch((error) => console.error(error));
 
+    }
+return (
+    <div className='mx-auto flex flex-col item-center bg-purple-100 my-10 w-[30vw]'>
+        <h1 className='text-center font-bold text-xl py-1 text-[#844bb7]'>Generate Your short URLs</h1>
+        <div className='p-2 flex flex-col gap-2 items-center justify-center'>
+            <input className='focus:outline-purple-400 px-5 bg-purple-50 ' type="text" value={url} placeholder='Enter Your URL' onChange={(e) => seturl(e.target.value)} />
+            <input className='focus:outline-purple-400 px-5 bg-purple-50' type="text" value={shorturl} placeholder='Enter Your preferred URL' onChange={(e) => setshorturl(e.target.value)} />
+            <button className='bg-[#c27aff] text-white font-bold rounded-lg py-1 px-2' onClick={generate1}>Generate</button>
         </div>
-    );
+        <div>
+            {generate && <>
+                <span className='font-bold text-lg'> Your Link </span>
+                <div><code> <Link target='_blank' href={generate}>{generate}</Link>
+                </code></div>
+            </>
+            }
+        </div>
+
+    </div>
+);
 }
 
 export default Shorten;
